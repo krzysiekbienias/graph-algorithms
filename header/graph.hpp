@@ -23,10 +23,10 @@ public:
     };
 
 
-    static constexpr int INF =1'000'000'000;
-
 
     explicit Graph(bool directed = true);
+
+    bool isDirected () const;
 
     bool addVertex(const Vertex &v);
 

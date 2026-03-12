@@ -6,6 +6,10 @@
 
 Graph::Graph(bool directed) :m_directed(directed){};
 
+bool Graph::isDirected() const {
+    return m_directed;
+}
+
 bool Graph::containsVertex(const Vertex& v) const {
     return m_adjList.contains(v);
 }

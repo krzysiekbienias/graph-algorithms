@@ -38,3 +38,44 @@ bool isBipartite(const Graph& graph) {
     return true;
 
 }
+
+//interview style
+
+bool isBipartite(const std::vector<std::vector<int>>& edgeList) {
+    int n=edgeList.size();
+    std::vector<int> vert;
+    for (int i=0;i<n;i++) {
+        vert.push_back(i);
+    }
+
+    std::unordered_map<int,int> color;
+    for (int v:vert) {
+        color[v]=-1;
+    }
+
+    for (int v:vert) {
+        if (color[v]!=-1) {
+            continue;
+        }
+
+        std::queue<int> q;
+        q.push(v);
+        color[v]=0;
+        while (!q.empty()) {
+            int u=q.front();
+            q.pop();
+            std::vector<int> uNeighbours=edgeList[u];
+            for (int v:uNeighbours) {
+                if (color[v]==-1) {
+                    color[v]=1-color[u];
+                    q.push(v);
+                }
+                else if (color[v]==color[u]) {
+                    return false;
+                }
+            }
+        }
+
+    }
+    return true;
+}

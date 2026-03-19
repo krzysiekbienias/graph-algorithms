@@ -51,3 +51,84 @@ dijkstra(const Graph& graph, Graph::Vertex source) {
 
     return distanceMap;
 }
+
+std::unordered_map<int,int> dijkstra(const std::vector<std::vector<int>>& graph,int source) {
+    std::unordered_map<int,int> distMap;
+    int n=graph.size();
+    //build adjacent list
+    std::vector<std::vector<std::pair<int,int>>> adj(n);
+    for (const auto & item:graph) {
+        int from=item[0];
+        int to=item[1];
+        int weight=item[2];
+        adj[from].push_back({to,weight});
+        adj[to].push_back({from,weight}); //because bidirectional
+    }
+    int inf=INT_MAX;
+    for (int i =0;i<adj.size();i++) {
+        distMap[i]=inf;
+    }
+    distMap[source]=0;
+    std::vector<bool> visited(n,false);
+    using HeapEntry=std::pair<int,int> ;//<weight, to>
+    std::priority_queue<HeapEntry,std::vector<HeapEntry>,std::greater<HeapEntry>> pq;
+    pq.emplace(0,source);
+    while (!pq.empty()) {
+        auto [currentWeight,from]=pq.top(); // tu nie moze byc referencji WAZNE
+        pq.pop();
+        if (visited[from]) {
+            continue;
+        }
+        visited[from]=true; //or visited.insert(from) if we decide on set
+        for (const auto & [to,weight]:adj[from])
+        {
+            if (!visited[to] && currentWeight+weight<distMap[to]) {
+                distMap[to]=currentWeight+weight;
+                pq.push({distMap[to],to});
+            }
+        }
+    }
+    return distMap;
+}
+
+
+
+std::vector<int> dijkstra(int n,const std::vector<std::vector<int>>& graph,int source) {
+
+    //build adjacent list
+    std::vector<std::vector<std::pair<int,int>>> adj(n);
+    for (const auto & item:graph) {
+        int from=item[0];
+        int to=item[1];
+        int weight=item[2];
+        adj[from].push_back({to,weight});
+        adj[to].push_back({from,weight}); //because bidirectional
+    }
+
+    std::vector<int> dist(n);
+    int inf=INT_MAX;
+    for (int i =0;i<adj.size();i++) {
+        dist[i]=inf;
+    }
+    dist[source]=0;
+    std::vector<bool> visited(n,false);
+    using HeapEntry=std::pair<int,int> ;//<weight, to>
+    std::priority_queue<HeapEntry,std::vector<HeapEntry>,std::greater<HeapEntry>> pq;
+    pq.emplace(0,source);
+    while (!pq.empty()) {
+        auto [currentWeight,from]=pq.top(); // tu nie moze byc referencji WAZNE
+        pq.pop();
+        if (visited[from]) {
+            continue;
+        }
+        visited[from]=true; //or visited.insert(from) if we decide on set
+        for (const auto & [to,weight]:adj[from])
+        {
+            if (!visited[to] && currentWeight+weight<dist[to]) {
+                dist[to]=currentWeight+weight;
+                pq.push({dist[to],to});
+            }
+        }
+    }
+    return dist;
+}

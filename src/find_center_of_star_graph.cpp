@@ -1,7 +1,6 @@
-#include <string>
 #include <vector>
-#include <unordered_set>
-#include "builders/adjacency_list_style.hpp"
+#include "graph.hpp"
+
 
 int findCenter(const Graph& graph) {
     std::vector<Graph::Vertex> vecVertices;

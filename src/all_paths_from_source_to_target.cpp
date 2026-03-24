@@ -29,7 +29,7 @@ std::vector<std::vector<int>> allPathsSourceTarget(const Graph& graph) {
     using GE = Graph::Edge;
 
     GV start = 0;
-    int target = graph.nbOfVertices() - 1;
+    int target = graph.vertexCount() - 1;
     std::vector<std::vector<GV>> allPaths;
     std::vector<GV> currentPath{0};
     dfsBacktracking(graph, start, target, currentPath, allPaths);

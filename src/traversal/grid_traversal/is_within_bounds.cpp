@@ -28,3 +28,8 @@ bool isWithinBounds(int r, int c,const std::vector<std::vector<char>>& matrix) {
     }
     return false;
 }
+
+//another version without reference to the matrix itself.
+bool isWithinBounds(int r, int c, int rows, int cols) {
+    return r >= 0 && r < rows && c >= 0 && c < cols;
+}

@@ -15,6 +15,37 @@ option(ENABLE_DEV_MAIN "Build dev_main executable (experiments)" ON)
 
 add_library(core_lib STATIC
         src/core_lib.cpp
+        src/graph.cpp
+        src/display_box/pretty_display.cpp
+
+        src/shortest_path/dijkstra.cpp
+        src/shortest_path/city_with_fewest_neighbors_within_distance_limit.cpp
+        src/shortest_path/network_delay_time.cpp
+        src/shortest_path/minimum_cost_to_buy_apples.cpp
+
+
+        src/traversal/dfs.cpp
+        src/traversal/bfs.cpp
+        src/mst/prim.cpp
+
+
+        src/traversal/grid_traversal/is_within_bounds.cpp
+        src/traversal/grid_traversal/nb_of_islands.cpp
+        src/traversal/grid_traversal/fastest_route_to_food.cpp
+        src/traversal/grid_traversal/river_sizes.cpp
+        src/traversal/grid_traversal/largest_contiguous_land.cpp
+        src/traversal/count_city_clusters.cpp
+        src/find_center_of_star_graph.cpp
+        src/properties/is_bipartite.cpp
+        src/properties/optimal_city_pair_road_rank.cpp
+
+        src/builders/build_from_adjecency_list.cpp
+        src/builders/build_from_edge_list.cpp
+        src/all_paths_from_source_to_target.cpp
+        src/ordering/topological_sort_kahn.cpp
+
+
+
         # add more .cpp here as project grows
 )
 

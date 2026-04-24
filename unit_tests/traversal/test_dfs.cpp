@@ -157,3 +157,12 @@ TEST(DfsTest, HandlesSelfLoopCorrectly) {
     std::vector<Graph::Vertex> expected{1, 2};
     EXPECT_EQ(result, expected);
 }
+
+TEST(DFS,InterviewFriendlyGraph1) {
+    std::vector<std::vector<int>>graph={{1,3},{3,0,1},{2},{0}};
+
+    std::vector<int> res=dfs(graph,0);
+    std::vector<int> expected={0,1,3};
+    EXPECT_EQ(res,expected);
+
+}

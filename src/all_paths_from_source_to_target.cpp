@@ -38,6 +38,43 @@ std::vector<std::vector<int>> allPathsSourceTarget(const Graph& graph) {
 }
 
 
-std::vector<std::vector<int>> allPathsSourceTarget(const std::vector<std::vector<int>>& graph) {
-    return {{}};
+
+
+/* Below more friendly interview oriented,
+ *
+ *
+ *
+ */
+
+static void dfs(int currentNode,
+            int target,
+            std::vector<std::vector<int>> &graph,
+            std::vector<int>& currPath,
+            std::vector<std::vector<int>> &res) {
+    //add cuurent Node to current Path
+    currPath.push_back(currentNode);
+    if (currentNode==target) {
+        res.push_back(currPath);
+    }
+    else {
+        //explore
+        for (int neigh:graph[currentNode]) {
+            dfs(neigh,target,graph,currPath,res);
+        }
+    }
+    currPath.pop_back();
+
+}
+
+
+std::vector<std::vector<int>> allPathsSourceTarget(std::vector<std::vector<int>>& graph) {
+    std::vector<std::vector<int>> result;
+    std::vector<int> currPath;
+    int n=graph.size();
+
+    int target=n-1;
+
+    dfs(0,target,graph,currPath,result);
+
+    return result;
 }

@@ -9,27 +9,43 @@
     •	2 -> 3
     •	3 -> 4
     •	4 -> (no neighbors)
- * note that we assume vertices are 0,1,... like because this is the way how we treat indices of the list
+ * note that we assume vertices are 0,1,... like because this is the way how we create indices from indexes the list
  */
 
 Graph buildGraphFromAdjList(
-    const std::vector<std::vector<Graph::Vertex>>& adjList,
+    const std::vector<std::vector<int>>& adjList,
+    int totalVertices,
     bool directed = true) {
+    if (totalVertices < static_cast<int>(adjList.size())) {
+        throw std::invalid_argument(
+            "totalVertices cannot be smaller than adjList.size()");
+    }
+
     Graph g(directed);
 
-    for (Graph::Vertex v = 0; v < static_cast<Graph::Vertex>(adjList.size()); ++v) {
+    // Add all vertices, including isolated ones
+    for (Graph::Vertex v = 0; v < totalVertices; ++v) {
         g.addVertex(v);
     }
 
-    for (Graph::Vertex from = 0; from < static_cast<Graph::Vertex>(adjList.size()); ++from) {
-        for (const Graph::Vertex& to : adjList[from]) {
-            if (to < 0 || to >= static_cast<Graph::Vertex>(adjList.size())) {
+    for (Graph::Vertex from = 0;
+         from < static_cast<Graph::Vertex>(adjList.size());
+         ++from) {
+        for (Graph::Vertex to : adjList[from]) {
+            if (to < 0 || to >= totalVertices) {
                 throw std::out_of_range("Neighbor vertex index out of range.");
             }
 
-            g.addEdge(from, to);
+            if (directed) {
+                g.addEdge(from, to);
+            } else {
+                // For undirected graphs, add each edge only once
+                if (from < to) {
+                    g.addEdge(from, to);
+                }
+            }
         }
-    }
+         }
 
     return g;
 }

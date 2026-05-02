@@ -44,3 +44,45 @@ std::vector<int> topologicalSortKhan(const Graph& graph) {
 
     return topoOrder;
 }
+
+//for topological order we usually get edges
+
+std::vector<int> toplogicalSortKhan(int n,std::vector<std::vector<int>>& edges) {
+    std::vector<std::vector<int>>  graph(n);
+    std::vector<int> inDegree(n,0);
+    //create graph represented by adjList and inDegree vector
+    for (const auto & edge:edges) {
+        int from =edge[0];
+        int to =edge[1];
+
+        graph[from].push_back(to);
+        inDegree[to]++;
+    }
+    //ready means that it in this particular moment you may pick up task ,course and so on
+    std::queue<int> readyQueue;
+    for (int i=0;i<n;++i) {
+        if (inDegree[i]==0) {
+            readyQueue.push(i);
+        }
+    }
+    std::vector<int> topoOrder;
+    while (!readyQueue.empty()) {
+        int curr=readyQueue.front();
+        readyQueue.pop();
+        topoOrder.push_back(curr);
+
+        std::vector<int> &neighbpours=graph[curr];
+        for (int neighbour:neighbpours) {
+            inDegree[neighbour]--;
+            if (inDegree[neighbour]==0) {
+                readyQueue.push(neighbour);
+            }
+        }
+
+    }
+    //cycle detection
+    if (n!=topoOrder.size()) {
+        return {};
+    }
+    return topoOrder;
+}

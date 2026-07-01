@@ -14,7 +14,8 @@
  */
 
 Graph buildGraphFromAdjList(
-    const std::vector<std::vector<Graph::Vertex>>& adjList,
+    const std::vector<std::vector<int>>& adjList,
+    int total_vertices,
     bool directed = true);
 
 /*

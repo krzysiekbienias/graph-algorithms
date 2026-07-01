@@ -40,7 +40,7 @@ Graph buildGraphFromWeightedEdgeList(
  * but you need to pass also set of verices explicite.
  */
 Graph buildGraphFromEdgeList(
-    const std::unordered_set<Graph::Vertex>& vertices,
+    const std::unordered_set<int>& vertices,
     const std::vector<std::vector<int>>& edgeList,
     bool directed = true) {
     Graph g(directed);

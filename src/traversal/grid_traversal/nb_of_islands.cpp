@@ -1,7 +1,7 @@
 #include<vector>
 #include "traversal/grid_traversal/is_within_bounds.hpp"
+#include "constants.hpp"
 
-std::vector<std::pair<int,int>> directions={{-1,0},{0,-1},{0,1},{1,0}}; //U,L,R,D
 
 static void dfs(int r,int c,std::vector<std::vector<int>>& grid) {
     grid[r][c]=-1;

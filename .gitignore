@@ -64,3 +64,9 @@ CHECKLIST_NOTES.md
 
 #smoke ut
 unit_tests/test_smoke.cpp
+
+#vscode
+.vscode
+
+#cache
+.cache

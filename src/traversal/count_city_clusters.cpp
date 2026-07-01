@@ -1,7 +1,7 @@
 #include <vector>
 #include "traversal/count_city_clusters.hpp"
 
-
+// to jest tez count province.
 static void dfs(int city,const std::vector<std::vector<int>> &isConnected,std::vector<bool> &visited) {
     visited[city]=true;
     for (int nextCity = 0; nextCity < isConnected.size(); ++nextCity) {
@@ -9,7 +9,6 @@ static void dfs(int city,const std::vector<std::vector<int>> &isConnected,std::v
             dfs(nextCity,isConnected,visited);
         }
     }
-
 }
 
 int countCityClusters(const std::vector<std::vector<int>> &isConnected) {

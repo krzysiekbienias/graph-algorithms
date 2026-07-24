@@ -24,3 +24,11 @@ target_link_libraries(test_environment
 
 include(GoogleTest)
 gtest_discover_tests(test_environment)
+
+if(APPLE AND CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_custom_command(TARGET test_environment POST_BUILD
+        COMMAND dsymutil $<TARGET_FILE:test_environment>
+        COMMENT "Generating test_environment.dSYM for CodeLLDB"
+        VERBATIM
+    )
+endif()

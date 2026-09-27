@@ -1,3 +1,6 @@
+#include <climits>
+#include <functional>
+#include <queue>
 #include <string>
 #include <vector>
 # include "shortest_path/dijkstra.hpp"

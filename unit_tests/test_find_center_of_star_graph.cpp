@@ -3,7 +3,7 @@
 #include "find_center_of_star_graph.hpp"
 #include "graph.hpp"
 #include <unordered_set>
-#include "builders/adjacency_list_style.hpp"
+#include "builders/build_from_edge_list.hpp"
 
 TEST(CenterStarGraph,Simple) {
     std::vector<std::vector<int>> edges ={{1,2},{2,3},{4,2}};

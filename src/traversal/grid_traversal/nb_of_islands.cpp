@@ -3,6 +3,7 @@
 #include "constants.hpp"
 
 
+
 static void dfs(int r,int c,std::vector<std::vector<int>>& grid) {
     grid[r][c]=-1;
     for (const auto &[dr,dc]:directions) {

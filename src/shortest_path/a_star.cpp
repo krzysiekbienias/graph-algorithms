@@ -85,10 +85,5 @@ std::vector<std::vector<int>> aStarAlgorithm(int startRow, int startCol, int end
 
         }
     }
-
-
-
     return {};
-
-
 }
